@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rogério Arruda Melaré | Fisioterapia e Reabilitação Neurológica</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #003f5c;   /* Azul petróleo */
+            --secondary: #88b04b; /* Verde claro */
+            --accent: #8a508f;    /* Roxo */
+            --light: #f7fafc;
+            --dark: #1a202c;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, var(--primary) 0%, #001a2c 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 20px 40px;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="2"/></svg>') repeat;
+            opacity: 0.5;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .profile-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid var(--secondary);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-badge {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 3;
+        }
+
+        h1 {
+            font-size: 2.8em;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            font-size: 1.2em;
+            font-weight: 300;
+            color: #cbd5e0;
+            margin-bottom: 30px;
+        }
+
+        /* Container & Cards */
+        .container {
+            max-width: 900px;
+            margin: -40px auto 40px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 5px;
+            height: 100%;
+            background-color: var(--accent);
+        }
+        
+        .card:nth-child(2)::before {
+            background-color: var(--secondary);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            color: var(--primary);
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .unicamp-highlight {
+            background-color: rgba(138, 80, 143, 0.1);
+            color: var(--accent);
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        /* Clinic Section Full Width */
+        .clinic-card {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, var(--secondary) 0%, #688a38 100%);
+            color: white;
+            text-align: center;
+            border-radius: 16px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(136, 176, 75, 0.3);
+            border: none;
+        }
+
+        .clinic-card::before {
+            display: none;
+        }
+
+        .clinic-card h3 {
+            color: white;
+            justify-content: center;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .clinic-card p {
+            font-size: 1.1em;
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background-color: white;
+            color: var(--secondary);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            font-size: 1.1em;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
+            transform: scale(1.05);
+        }
+
+        .contact-section {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-top: 20px;
+            padding: 40px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .contact-section h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #a0aec0;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="hero-content">
+            <div class="profile-container">
+                <img src="bc5418ac-24c0-479a-9370-2cd52d8ff2a2.jpg" alt="Rogério Arruda Melaré" class="profile-img">
+                <div class="profile-badge">🔬</div>
+            </div>
+            <h1>Rogério Arruda Melaré</h1>
+            <h2>Fisioterapeuta • Especialista em Terapia Intensiva e Reabilitação Neurológica Pediátrica</h2>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="grid">
+            
+            <!-- Formação -->
+            <div class="card">
+                <h3>📚 Excelência Acadêmica</h3>
+                <p>A reabilitação neurológica demanda alto rigor científico. Minha atuação é embasada por uma sólida formação na <strong>Universidade Estadual de Campinas (UNICAMP)</strong>, onde desenvolvi expertise em duas áreas críticas:</p>
+                <div class="unicamp-highlight">Terapia Intensiva (UNICAMP)</div>
+                <div class="unicamp-highlight">Reabilitação Neurológica Pediátrica (UNICAMP)</div>
+            </div>
+
+            <!-- Foco de Atuação -->
+            <div class="card">
+                <h3>🎯 Abordagem Clínica</h3>
+                <p>O foco do meu trabalho é a <strong>intervenção precoce</strong> e o <strong>neurodesenvolvimento infantil</strong>. Utilizo terapias pautadas em evidências de alta qualidade metodológica para promover:</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Neuroplasticidade ativa.</li>
+                    <li>Ganho de funcionalidade.</li>
+                    <li>Prática orientada a tarefas.</li>
+                </ul>
+            </div>
+
+            <!-- Casa IRIS -->
+            <div class="clinic-card">
+                <h3>Nossa Casa IRIS</h3>
+                <p>Um espaço dedicado à Neurodiversidade e ao Conhecimento.<br>Promovemos uma reabilitação integrada, centrada na família e fundamentada na ciência.</p>
+                <a href="https://nossacasairis.com.br" target="_blank" class="btn btn-primary">
+                    🌐 Visite nosso site: nossacasairis.com.br
+                </a>
+            </div>
+
+            <!-- Contato -->
+            <div class="contact-section">
+                <h3>Agende uma Avaliação</h3>
+                <p style="margin-bottom: 25px; color: #4a5568;">Transforme o prognóstico através de uma intervenção especializada e humanizada. Entre em contato diretamente via WhatsApp.</p>
+                <a href="https://wa.me/5515981310900" class="btn btn-whatsapp">
+                    💬 Falar no WhatsApp: (15) 98131-0900
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Rogério Arruda Melaré. Ciência, Cuidado e Neuroreabilitação.</p>
+    </footer>
+
+</body>
+</html>
