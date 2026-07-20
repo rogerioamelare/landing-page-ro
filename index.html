@@ -1,322 +1,498 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rogério Arruda Melaré | Fisioterapia e Reabilitação Neurológica</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #003f5c;   /* Azul petróleo */
-            --secondary: #88b04b; /* Verde claro */
-            --accent: #8a508f;    /* Roxo */
-            --light: #f7fafc;
-            --dark: #1a202c;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
-        }
-
-        /* Hero Section */
-        .hero {
-            position: relative;
-            background: linear-gradient(135deg, var(--primary) 0%, #001a2c 100%);
-            color: white;
-            text-align: center;
-            padding: 80px 20px 40px;
-            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
-        }
-
-        .hero::after {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="2"/></svg>') repeat;
-            opacity: 0.5;
-            z-index: 1;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .profile-container {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-
-        .profile-img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 6px solid var(--secondary);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            position: relative;
-            z-index: 2;
-        }
-
-        .profile-badge {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background-color: var(--accent);
-            color: white;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            z-index: 3;
-        }
-
-        h1 {
-            font-size: 2.8em;
-            font-weight: 800;
-            letter-spacing: -1px;
-            margin-bottom: 5px;
-        }
-
-        h2 {
-            font-size: 1.2em;
-            font-weight: 300;
-            color: #cbd5e0;
-            margin-bottom: 30px;
-        }
-
-        /* Container & Cards */
-        .container {
-            max-width: 900px;
-            margin: -40px auto 40px;
-            padding: 0 20px;
-            position: relative;
-            z-index: 10;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-
-        @media (min-width: 768px) {
-            .grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .card {
-            background: white;
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0;
-            width: 5px;
-            height: 100%;
-            background-color: var(--accent);
-        }
-        
-        .card:nth-child(2)::before {
-            background-color: var(--secondary);
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-        }
-
-        .card h3 {
-            color: var(--primary);
-            font-size: 1.4em;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .unicamp-highlight {
-            background-color: rgba(138, 80, 143, 0.1);
-            color: var(--accent);
-            padding: 4px 8px;
-            border-radius: 6px;
-            font-weight: 600;
-            display: inline-block;
-            margin-top: 10px;
-        }
-
-        /* Clinic Section Full Width */
-        .clinic-card {
-            grid-column: 1 / -1;
-            background: linear-gradient(135deg, var(--secondary) 0%, #688a38 100%);
-            color: white;
-            text-align: center;
-            border-radius: 16px;
-            padding: 40px 30px;
-            box-shadow: 0 10px 30px rgba(136, 176, 75, 0.3);
-            border: none;
-        }
-
-        .clinic-card::before {
-            display: none;
-        }
-
-        .clinic-card h3 {
-            color: white;
-            justify-content: center;
-            font-size: 1.8em;
-            margin-bottom: 10px;
-        }
-
-        .clinic-card p {
-            font-size: 1.1em;
-            margin-bottom: 25px;
-            opacity: 0.9;
-        }
-
-        /* Buttons */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 14px 32px;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            gap: 10px;
-        }
-
-        .btn-primary {
-            background-color: white;
-            color: var(--secondary);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .btn-primary:hover {
-            background-color: var(--primary);
-            color: white;
-            transform: scale(1.05);
-        }
-
-        .btn-whatsapp {
-            background-color: #25D366;
-            color: white;
-            font-size: 1.1em;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-        }
-
-        .btn-whatsapp:hover {
-            background-color: #128C7E;
-            transform: scale(1.05);
-        }
-
-        .contact-section {
-            grid-column: 1 / -1;
-            text-align: center;
-            margin-top: 20px;
-            padding: 40px;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-
-        .contact-section h3 {
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: #a0aec0;
-            font-size: 0.9em;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rogério Melaré | Fisioterapeuta Especialista — Casa IRIS Sorocaba</title>
+  <meta name="description" content="Rogério Melaré – Fisioterapeuta especialista em Terapia Intensiva e Neuroreabilitação Pediátrica pela UNICAMP. Atende na Casa IRIS em Sorocaba (SP). CREFITO-3 69258-F." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-    <header class="hero">
-        <div class="hero-content">
-            <div class="profile-container">
-                <img src="bc5418ac-24c0-479a-9370-2cd52d8ff2a2.jpg" alt="Rogério Arruda Melaré" class="profile-img">
-                <div class="profile-badge">🔬</div>
-            </div>
-            <h1>Rogério Arruda Melaré</h1>
-            <h2>Fisioterapeuta • Especialista em Terapia Intensiva e Reabilitação Neurológica Pediátrica</h2>
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-brand">
+        <div class="brand-logo">RM</div>
+        <div class="brand-text">
+          <span class="brand-name">Rogério Melaré</span>
+          <span class="brand-sub">Fisioterapeuta</span>
         </div>
-    </header>
+      </a>
+      <nav class="nav-links" id="nav-links">
+        <a href="#sobre" class="nav-link">Sobre</a>
+        <a href="#especialidades" class="nav-link">Especialidades</a>
+        <a href="#formacao" class="nav-link">Formação</a>
+        <a href="#clinica" class="nav-link">A Casa IRIS</a>
+        <a href="#contato" class="nav-link nav-cta">Agendar Consulta</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
 
-    <main class="container">
-        <div class="grid">
-            
-            <!-- Formação -->
-            <div class="card">
-                <h3>📚 Excelência Acadêmica</h3>
-                <p>A reabilitação neurológica demanda alto rigor científico. Minha atuação é embasada por uma sólida formação na <strong>Universidade Estadual de Campinas (UNICAMP)</strong>, onde desenvolvi expertise em duas áreas críticas:</p>
-                <div class="unicamp-highlight">Terapia Intensiva (UNICAMP)</div>
-                <div class="unicamp-highlight">Reabilitação Neurológica Pediátrica (UNICAMP)</div>
-            </div>
-
-            <!-- Foco de Atuação -->
-            <div class="card">
-                <h3>🎯 Abordagem Clínica</h3>
-                <p>O foco do meu trabalho é a <strong>intervenção precoce</strong> e o <strong>neurodesenvolvimento infantil</strong>. Utilizo terapias pautadas em evidências de alta qualidade metodológica para promover:</p>
-                <ul style="margin-left: 20px; margin-top: 10px;">
-                    <li>Neuroplasticidade ativa.</li>
-                    <li>Ganho de funcionalidade.</li>
-                    <li>Prática orientada a tarefas.</li>
-                </ul>
-            </div>
-
-            <!-- Casa IRIS -->
-            <div class="clinic-card">
-                <h3>Nossa Casa IRIS</h3>
-                <p>Um espaço dedicado à Neurodiversidade e ao Conhecimento.<br>Promovemos uma reabilitação integrada, centrada na família e fundamentada na ciência.</p>
-                <a href="https://nossacasairis.com.br" target="_blank" class="btn btn-primary">
-                    🌐 Visite nosso site: nossacasairis.com.br
-                </a>
-            </div>
-
-            <!-- Contato -->
-            <div class="contact-section">
-                <h3>Agende uma Avaliação</h3>
-                <p style="margin-bottom: 25px; color: #4a5568;">Transforme o prognóstico através de uma intervenção especializada e humanizada. Entre em contato diretamente via WhatsApp.</p>
-                <a href="https://wa.me/5515981310900" class="btn btn-whatsapp">
-                    💬 Falar no WhatsApp: (15) 98131-0900
-                </a>
-            </div>
-
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-inner container">
+      <!-- Left: text -->
+      <div class="hero-content">
+        <div class="hero-badge">CREFITO-3 · 69258-F</div>
+        <h1 class="hero-title">
+          Rogério<br />
+          <span class="hero-title-accent">Melaré</span>
+        </h1>
+        <p class="hero-role">Fisioterapeuta Especialista</p>
+        <p class="hero-desc">
+          Especialização em <strong>Terapia Intensiva</strong> e <strong>Neuroreabilitação Pediátrica</strong> pela UNICAMP. Atendimento humanizado e baseado em evidências para crianças e adultos.
+        </p>
+        <div class="hero-tags">
+          <span class="tag">🧠 Neuroreabilitação Pediátrica</span>
+          <span class="tag">🫁 Fisioterapia Respiratória</span>
+          <span class="tag">👶 Conceito Bobath</span>
         </div>
-    </main>
+        <div class="hero-actions">
+          <a href="https://wa.me/5515981310900?text=Olá%2C%20Rogério!%20Vim%20pelo%20seu%20site%20e%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener" class="btn btn-primary" id="hero-cta">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.558 4.112 1.532 5.836L0 24l6.336-1.516A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.003-1.367l-.359-.213-3.723.976.993-3.625-.234-.372A9.818 9.818 0 0 1 2.182 12C2.182 6.574 6.574 2.182 12 2.182S21.818 6.574 21.818 12 17.426 21.818 12 21.818z"/></svg>
+            Agendar pelo WhatsApp
+          </a>
+          <a href="#sobre" class="btn btn-ghost">Conheça meu trabalho</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-num" data-target="20">0</span><span class="stat-suf">+</span>
+            <span class="stat-lbl">Anos em Fisioterapia</span>
+          </div>
+          <div class="stat-sep"></div>
+          <div class="stat-item">
+            <span class="stat-num" data-target="10">0</span><span class="stat-suf">+</span>
+            <span class="stat-lbl">Anos em UTI</span>
+          </div>
+          <div class="stat-sep"></div>
+          <div class="stat-item">
+            <span class="stat-num" data-target="2">0</span>
+            <span class="stat-lbl">Especializações UNICAMP</span>
+          </div>
+        </div>
+      </div>
+      <!-- Right: photo -->
+      <div class="hero-photo-wrap">
+        <div class="photo-frame">
+          <img src="foto-rogerio.jpg" alt="Rogério Melaré – Fisioterapeuta" class="hero-photo" id="hero-photo" />
+        </div>
+      </div>
+    </div>
+    <!-- Wavy divider -->
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <path d="M0 40C240 80 480 0 720 40C960 80 1200 0 1440 40V80H0V40Z" fill="var(--bg-alt)"/>
+      </svg>
+    </div>
+  </section>
 
-    <footer>
-        <p>&copy; 2026 Rogério Arruda Melaré. Ciência, Cuidado e Neuroreabilitação.</p>
-    </footer>
+  <!-- ===== SOBRE ===== -->
+  <section class="section bg-alt" id="sobre">
+    <div class="container">
+      <div class="two-col">
+        <div class="col-text">
+          <span class="section-tag">Sobre mim</span>
+          <h2 class="section-title">Dedicado ao cuidado<br /><em>com ciência e humanidade</em></h2>
+          <p class="body-text">
+            Sou fisioterapeuta com mais de <strong>20 anos de experiência clínica</strong>, sendo 10 deles dedicados a Unidades de Terapia Intensiva (UTI), aliados à minha sólida formação acadêmica pela <strong>UNICAMP</strong> em Terapia Intensiva e Neuroreabilitação Pediátrica.
+          </p>
+          <p class="body-text">
+            Minha prática é baseada na integração entre conhecimento científico atualizado e um olhar atento às necessidades individuais de cada paciente e família. Acredito que o cuidado genuíno começa pela escuta e pela construção de uma relação de confiança.
+          </p>
+          <div class="cred-chips">
+            <div class="chip">
+              <span class="chip-icon">🎓</span>
+              <div>
+                <strong>UNICAMP</strong>
+                <span>Terapia Intensiva</span>
+              </div>
+            </div>
+            <div class="chip">
+              <span class="chip-icon">🧠</span>
+              <div>
+                <strong>UNICAMP</strong>
+                <span>Neuroreabilitação Pediátrica</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-visual">
+          <div class="values-card">
+            <h3>Pilares do meu trabalho</h3>
+            <ul class="values-list">
+              <li>
+                <div class="value-icon">📚</div>
+                <div>
+                  <strong>Prática baseada em evidências</strong>
+                  <p>Condutas alinhadas ao conhecimento científico mais atual</p>
+                </div>
+              </li>
+              <li>
+                <div class="value-icon">❤️</div>
+                <div>
+                  <strong>Cuidado humanizado</strong>
+                  <p>Escuta ativa e respeito à singularidade de cada paciente</p>
+                </div>
+              </li>
+              <li>
+                <div class="value-icon">👨‍👩‍👧</div>
+                <div>
+                  <strong>Foco na família</strong>
+                  <p>Orientação e envolvimento familiar em todo o processo</p>
+                </div>
+              </li>
+              <li>
+                <div class="value-icon">🔬</div>
+                <div>
+                  <strong>Atualização contínua</strong>
+                  <p>Formação permanente nas melhores metodologias</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- ===== ESPECIALIDADES ===== -->
+  <section class="section bg-white" id="especialidades">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-tag">Especialidades</span>
+        <h2 class="section-title">Áreas de Atuação</h2>
+        <p class="section-sub">Atendimento especializado em consultório e domicílio para crianças e adultos em Sorocaba</p>
+      </div>
+      <div class="cards-grid">
+
+        <div class="spec-card" id="card-neuro-ped">
+          <div class="spec-top">
+            <div class="spec-icon-wrap purple">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" class="spec-icon">
+                <circle cx="24" cy="14" r="8"/>
+                <path d="M10 40c0-7.7 6.3-14 14-14s14 6.3 14 14"/>
+                <path d="M18 11c0 0-2 3-2 6M30 11c0 0 2 3 2 6"/>
+              </svg>
+            </div>
+            <span class="spec-badge">UNICAMP · Especialização</span>
+          </div>
+          <h3>Fisioterapia Neurofuncional Pediátrica</h3>
+          <p>Atendimento especializado para bebês e crianças com disfunções neurológicas ou atraso no desenvolvimento motor. Promovemos funcionalidade, autonomia e qualidade de vida.</p>
+          <ul class="spec-list">
+            <li>Paralisia Cerebral e Síndrome de Down</li>
+            <li>Atraso no desenvolvimento neuromotor</li>
+            <li>Avaliação padronizada (HINE, GMFM)</li>
+            <li>Conceito Bobath Pediátrico</li>
+            <li>Orientação e capacitação familiar</li>
+          </ul>
+          <a href="https://wa.me/5515981310900?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20Fisioterapia%20Pediátrica." target="_blank" rel="noopener" class="spec-link" id="link-neuro-ped">
+            Agendar avaliação →
+          </a>
+        </div>
+
+        <div class="spec-card spec-featured" id="card-uti">
+          <div class="spec-top">
+            <div class="spec-icon-wrap teal">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" class="spec-icon">
+                <rect x="8" y="20" width="32" height="20" rx="3"/>
+                <path d="M16 20V14a8 8 0 0 1 16 0v6"/>
+                <path d="M24 28v4M20 30h8"/>
+              </svg>
+            </div>
+            <span class="spec-badge featured-badge">UNICAMP · Especialização</span>
+          </div>
+          <h3>Fisioterapia em Terapia Intensiva</h3>
+          <p>Mais de 10 anos de experiência em UTI adulto em hospitais de Sorocaba. Reabilitação funcional precoce, manejo ventilatório e suporte em situações de alta complexidade clínica.</p>
+          <ul class="spec-list">
+            <li>Reabilitação precoce em UTI</li>
+            <li>Manejo do suporte ventilatório</li>
+            <li>Desmame ventilatório em lesados medulares</li>
+            <li>Eletroestimulação diafragmática</li>
+            <li>Provas de função pulmonar</li>
+          </ul>
+          <a href="https://wa.me/5515981310900?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20Fisioterapia%20Respiratória." target="_blank" rel="noopener" class="spec-link" id="link-uti">
+            Agendar avaliação →
+          </a>
+        </div>
+
+        <div class="spec-card" id="card-bobath">
+          <div class="spec-top">
+            <div class="spec-icon-wrap rose">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" class="spec-icon">
+                <circle cx="24" cy="10" r="5"/>
+                <path d="M14 28c2-6 4-10 10-12 6 2 8 6 10 12"/>
+                <path d="M16 38c1-4 3-8 8-10 5 2 7 6 8 10"/>
+                <path d="M24 26v12"/>
+              </svg>
+            </div>
+            <span class="spec-badge">Rede Lucy Montoro · ABRADIMENE</span>
+          </div>
+          <h3>Conceito Neuroevolutivo Bobath</h3>
+          <p>Formação completa no Conceito Bobath Pediátrico, abordagem internacionalmente reconhecida para crianças com comprometimentos neurológicos e síndromes diversas.</p>
+          <ul class="spec-list">
+            <li>Crianças com deficiências neurológicas</li>
+            <li>Síndromes genéticas variadas</li>
+            <li>Treino de marcha e mobilidade</li>
+            <li>Estimulação sensoriomotora</li>
+            <li>Domiciliar e ambulatorial</li>
+          </ul>
+          <a href="https://wa.me/5515981310900?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20o%20tratamento%20pelo%20Método%20Bobath." target="_blank" rel="noopener" class="spec-link" id="link-bobath">
+            Agendar avaliação →
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FORMAÇÃO ===== -->
+  <section class="section bg-alt" id="formacao">
+    <div class="container">
+      <div class="section-header centered">
+        <span class="section-tag">Formação</span>
+        <h2 class="section-title">Trajetória Acadêmica</h2>
+        <p class="section-sub">Formação de excelência nas melhores instituições do Brasil</p>
+      </div>
+      <div class="timeline-clean">
+
+        <div class="tl-item" id="tl-unicamp-uti">
+          <div class="tl-marker">
+            <div class="tl-icon-circle">🎓</div>
+          </div>
+          <div class="tl-body">
+            <span class="tl-badge tl-primary">Pós-Graduação</span>
+            <h3>Especialização em Terapia Intensiva (UTI Adulto)</h3>
+            <p class="tl-inst">Universidade Estadual de Campinas — UNICAMP</p>
+            <p class="tl-desc">Especialização de alto nível em cuidados intensivos de adultos, com foco em suporte ventilatório, desmame, reabilitação em UTI e manejo de pacientes críticos. Mais de 10 anos de aplicação clínica em hospitais de Sorocaba.</p>
+          </div>
+        </div>
+
+        <div class="tl-item" id="tl-unicamp-neuro">
+          <div class="tl-marker">
+            <div class="tl-icon-circle">🎓</div>
+          </div>
+          <div class="tl-body">
+            <span class="tl-badge tl-primary">Pós-Graduação</span>
+            <h3>Especialização em Neuroreabilitação Pediátrica</h3>
+            <p class="tl-inst">Universidade Estadual de Campinas — UNICAMP</p>
+            <p class="tl-desc">Formação especializada no tratamento fisioterapêutico de crianças com comprometimentos neurológicos, síndromes genéticas e atrasos no desenvolvimento neuromotor. Base para o atendimento na Casa IRIS.</p>
+          </div>
+        </div>
+
+        <div class="tl-item" id="tl-bobath">
+          <div class="tl-marker">
+            <div class="tl-icon-circle">🧩</div>
+          </div>
+          <div class="tl-body">
+            <span class="tl-badge tl-secondary">Formação Especializada</span>
+            <h3>Conceito Neuroevolutivo Bobath Pediátrico</h3>
+            <p class="tl-inst">Rede Lucy Montoro de Reabilitação / ABRADIMENE</p>
+            <p class="tl-desc">Formação completa no Conceito Bobath, metodologia de referência internacional para reabilitação neurológica pediátrica, aplicada no tratamento de crianças com paralisia cerebral e diversas síndromes.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CASA IRIS ===== -->
+  <section class="section bg-white" id="clinica">
+    <div class="container">
+      <div class="iris-grid">
+        <div class="iris-photo-col">
+          <div class="iris-photo-wrap">
+            <img src="iris_casa.jpg" alt="Casa IRIS — Espaço Acolhedor em Sorocaba" class="iris-photo" />
+            <div class="iris-photo-tag">Espaço Acolhedor</div>
+          </div>
+        </div>
+        <div class="iris-content-col">
+          <span class="section-tag">Onde atendo</span>
+          <h2 class="section-title">Casa IRIS<br /><em>Neurodiversidade e Conhecimento</em></h2>
+          <p class="body-text">
+            A <strong>Casa IRIS</strong> é uma casa antiga com um propósito novo: incluir a todos, com sabedoria, ética e prudência. No coração de Sorocaba, este espaço foi planejado para ser o oposto de uma clínica fria e impessoal — um lugar onde famílias se sentem acolhidas e seguras.
+          </p>
+          <p class="body-text">
+            Aqui reunimos profissionais especializados em fisioterapia, comprometidos com práticas baseadas em evidências e com o desenvolvimento e reabilitação de cada paciente.
+          </p>
+          <div class="iris-pillars">
+            <div class="iris-pilar">
+              <span>📚</span>
+              <strong>Ética e Sabedoria</strong>
+            </div>
+            <div class="iris-pilar">
+              <span>💚</span>
+              <strong>Acolhimento e Inclusão</strong>
+            </div>
+            <div class="iris-pilar">
+              <span>🔬</span>
+              <strong>Evidências Científicas</strong>
+            </div>
+            <div class="iris-pilar">
+              <span>🌟</span>
+              <strong>Foco nas Capacidades</strong>
+            </div>
+          </div>
+          <div class="iris-actions">
+            <a href="https://nossacasairis.com.br" target="_blank" rel="noopener" class="btn btn-outline-color" id="link-site-iris">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Visitar site da Casa IRIS
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Serviços da clínica -->
+      <div class="iris-services">
+        <div class="iris-services-header centered">
+          <span class="section-tag">Serviços da Casa IRIS</span>
+          <h3 class="section-title-sm">O que oferecemos</h3>
+        </div>
+        <div class="services-row">
+          <div class="service-item" id="srv-fisio">
+            <div class="srv-icon purple">👶</div>
+            <h4>Fisioterapia Neurofuncional Pediátrica</h4>
+            <p>Reabilitação para bebês e crianças com disfunções neurológicas, atraso motor, Paralisia Cerebral e Síndrome de Down.</p>
+            <a href="https://wa.me/5515981310900?text=Olá!%20Gostaria%20de%20agendar%20fisioterapia%20pediátrica%20na%20Casa%20IRIS." target="_blank" rel="noopener" class="srv-btn" id="srv-btn-fisio">Agendar com Rogério →</a>
+          </div>
+          <div class="service-item" id="srv-adulto">
+            <div class="srv-icon teal">🫁</div>
+            <h4>Fisioterapia Respiratória e Motora</h4>
+            <p>Atendimento especializado em reabilitação motora e respiratória para jovens e adultos, com foco na recuperação funcional e suporte ventilatório.</p>
+            <a href="https://wa.me/5515981310900?text=Olá!%20Gostaria%20de%20agendar%20fisioterapia." target="_blank" rel="noopener" class="srv-btn" id="srv-btn-adulto">Agendar com Rogério →</a>
+          </div>
+          <div class="service-item" id="srv-ebooks">
+            <div class="srv-icon rose">📖</div>
+            <h4>E-books para Famílias</h4>
+            <p>Materiais educativos práticos desenvolvidos para auxiliar no cuidado diário de bebês e crianças em casa.</p>
+            <a href="https://nossacasairis.com.br/#ebooks" target="_blank" rel="noopener" class="srv-btn" id="srv-btn-ebooks">Ver E-books →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTATO ===== -->
+  <section class="section bg-alt" id="contato">
+    <div class="container">
+      <div class="contact-wrap">
+        <div class="contact-left">
+          <span class="section-tag">Contato</span>
+          <h2 class="section-title">Vamos começar<br /><em>a sua reabilitação?</em></h2>
+          <p class="body-text">Entre em contato para agendar sua consulta ou tirar dúvidas. Atendo em consultório na Casa IRIS e em domicílio em Sorocaba e região.</p>
+
+          <div class="contact-list">
+            <a href="https://wa.me/5515981310900" target="_blank" rel="noopener" class="contact-row" id="ctt-wa">
+              <div class="ctt-icon green">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.558 4.112 1.532 5.836L0 24l6.336-1.516A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.003-1.367l-.359-.213-3.723.976.993-3.625-.234-.372A9.818 9.818 0 0 1 2.182 12C2.182 6.574 6.574 2.182 12 2.182S21.818 6.574 21.818 12 17.426 21.818 12 21.818z"/></svg>
+              </div>
+              <div>
+                <strong>WhatsApp</strong>
+                <span>(15) 9 8131-0900</span>
+              </div>
+              <svg class="ctt-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="https://maps.app.goo.gl/354x3C4kYyqE8F9e8" target="_blank" rel="noopener" class="contact-row" id="ctt-local">
+              <div class="ctt-icon purple">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <strong>Localização</strong>
+                <span>Casa IRIS · No coração de Sorocaba, SP</span>
+              </div>
+              <svg class="ctt-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="https://nossacasairis.com.br" target="_blank" rel="noopener" class="contact-row" id="ctt-site">
+              <div class="ctt-icon teal">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </div>
+              <div>
+                <strong>Site da Clínica</strong>
+                <span>nossacasairis.com.br</span>
+              </div>
+              <svg class="ctt-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <div class="contact-row-static" id="ctt-crefito" style="display: flex; align-items: center; gap: 16px; padding: 16px 20px; background: var(--bg-alt); border-radius: var(--radius-md);">
+              <div class="ctt-icon gold">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+              </div>
+              <div>
+                <strong style="display: block; color: var(--text-main); font-size: 0.95rem; margin-bottom: 2px;">Registro Profissional</strong>
+                <span style="color: var(--text-muted); font-size: 0.85rem;">CREFITO-3 · 69258-F</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-right">
+          <div class="cta-box">
+            <div class="cta-box-bg"></div>
+            <img src="foto-rogerio.jpg" alt="Rogério Melaré" class="cta-photo" />
+            <h3>Olá! Sou o Rogério 👋</h3>
+            <p>Estou aqui para ajudar no desenvolvimento e reabilitação do paciente, ou para orientar você sobre qualquer questão de fisioterapia. Entre em contato — respondo com agilidade!</p>
+            <a href="https://wa.me/5515981310900?text=Olá%2C%20Rogério!%20Vim%20pelo%20seu%20site%20e%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener" class="btn btn-primary btn-large" id="cta-final">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.558 4.112 1.532 5.836L0 24l6.336-1.516A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.003-1.367l-.359-.213-3.723.976.993-3.625-.234-.372A9.818 9.818 0 0 1 2.182 12C2.182 6.574 6.574 2.182 12 2.182S21.818 6.574 21.818 12 17.426 21.818 12 21.818z"/></svg>
+              Falar pelo WhatsApp
+            </a>
+            <p class="cta-note">Resposta rápida · Atendimento humanizado</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand-logo">RM</div>
+          <div>
+            <span class="footer-name">Rogério Melaré</span>
+            <span class="footer-role">Fisioterapeuta · CREFITO-3 69258-F</span>
+          </div>
+        </div>
+        <div class="footer-nav">
+          <h4>Navegação</h4>
+          <a href="#sobre">Sobre</a>
+          <a href="#especialidades">Especialidades</a>
+          <a href="#formacao">Formação</a>
+          <a href="#clinica">Casa IRIS</a>
+          <a href="#contato">Contato</a>
+        </div>
+        <div class="footer-nav">
+          <h4>Especialidades</h4>
+          <a href="#especialidades">Fisioterapia Neurológica Pediátrica</a>
+          <a href="#especialidades">Fisioterapia em Terapia Intensiva</a>
+          <a href="#especialidades">Conceito Bobath Pediátrico</a>
+          <a href="#especialidades">Fisioterapia Respiratória</a>
+        </div>
+        <div class="footer-nav">
+          <h4>Contato</h4>
+          <a href="https://wa.me/5515981310900" target="_blank">(15) 9 8131-0900</a>
+          <a href="https://nossacasairis.com.br" target="_blank">nossacasairis.com.br</a>
+          <span>Sorocaba, SP · Brasil</span>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Rogério Arruda Melaré · Fisioterapeuta · CREFITO-3 69258-F · Sorocaba, SP</p>
+        <a href="https://nossacasairis.com.br" target="_blank" rel="noopener">Casa IRIS — Neurodiversidade e Conhecimento</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/5515981310900?text=Olá%2C%20Rogério!%20Vim%20pelo%20seu%20site%20e%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener" class="wa-float" id="wa-float" aria-label="Fale pelo WhatsApp">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.122.558 4.112 1.532 5.836L0 24l6.336-1.516A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 0 1-5.003-1.367l-.359-.213-3.723.976.993-3.625-.234-.372A9.818 9.818 0 0 1 2.182 12C2.182 6.574 6.574 2.182 12 2.182S21.818 6.574 21.818 12 17.426 21.818 12 21.818z"/></svg>
+    <span class="wa-tooltip">Fale comigo!</span>
+  </a>
+
+  <script src="script.js"></script>
 </body>
 </html>
